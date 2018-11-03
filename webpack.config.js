@@ -7,6 +7,12 @@ module.exports = {
     path: path.join(__dirname, "/dist"),
     filename: "index_bundle.js"
   },
+  devtool: "cheap-module-source-map",
+  devServer: {
+    contentBase: './dist',
+    hot: true,
+    open: true
+  },
   module: {
     rules: [
       {
@@ -24,7 +30,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      hash: true,
+      template: "./src/index.html",
+      filename: 'index.html'
     })
   ]
 };
