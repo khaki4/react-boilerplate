@@ -7,12 +7,7 @@ module.exports = {
     path: path.join(__dirname, "/dist"),
     filename: "index_bundle.js"
   },
-  devtool: "cheap-module-source-map",
-  devServer: {
-    contentBase: './dist',
-    hot: true,
-    open: true
-  },
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       {
@@ -24,15 +19,23 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      hash: true,
-      template: "./src/index.html",
-      filename: 'index.html'
+      template: "./src/index.html"
     })
   ]
 };
